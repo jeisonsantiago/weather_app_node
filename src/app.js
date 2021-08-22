@@ -14,6 +14,9 @@ const partialsPath = path.join(__dirname,'../templates/partials');
 
 const app  = express();
 
+// fallback in case process.env.PORT is undefined
+const port = process.env.PORT || 3000
+
 // set static server
 app.use(express.static(publicDirectory));
 // set template engine
@@ -88,6 +91,7 @@ app.get('*',(req,res)=>{
   });
 });
 
-app.listen(3333,()=>{
-  console.log('Server is up and running.');
+// local port = 3000 / heroku port ?
+app.listen(port,()=>{
+  console.log('Server is up and running. port:'+port);
 });
